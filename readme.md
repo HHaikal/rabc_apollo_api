@@ -13,6 +13,6 @@
 - [bcryptjs](https://www.npmjs.com/package/bcryptjs) Hash Password
 - [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) Authentication token
 - [dotenv](https://www.npmjs.com/package/dotenv) Save all private config
+- [graphql-shield](https://www.npmjs.com/package/graphql-shield) Permission middleware
 
 # Endpoint
-- Register / Signup > /

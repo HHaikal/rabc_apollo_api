@@ -2,13 +2,15 @@ const { GraphQLServer } = require('graphql-yoga')
 const models = require('./models')
 const typeDefs = require('./graphql/schema')
 const resolvers = require('./graphql/resolver')
+const permission = require('./graphql/permission')
 require('dotenv').config()
 
 
 const server = new GraphQLServer({
     typeDefs, 
     resolvers, 
-    context: async req => {
+    middlewares: [permission],
+    context: req => {
         return {
             models: models,
             ...req
