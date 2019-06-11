@@ -3,7 +3,17 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "reset": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all"
+  },
   "dependencies": {
-    "graphql-yoga": "^1.17.4"
+    "apollo-server": "^2.6.2",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.0.0",
+    "graphql-yoga": "^1.17.4",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.11",
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.8.7"
   }
 }

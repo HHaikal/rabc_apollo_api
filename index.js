@@ -1,21 +1,19 @@
 const { GraphQLServer } = require('graphql-yoga')
+const models = require('./models')
+const typeDefs = require('./graphql/schema')
+const resolvers = require('./graphql/resolver')
+require('dotenv').config()
 
-const typeDefs = `
-    type Query {
-        hello(name: String): String!
-    }
-`
-
-const resolvers = {
-    Query: {
-        hello: (_, {name}, context, info) => {
-            return 'Hello ' + name
-        }
-    }
-}
 
 const server = new GraphQLServer({
-    typeDefs, resolvers
+    typeDefs, 
+    resolvers, 
+    context: async req => {
+        return {
+            models: models,
+            ...req
+        }
+    }
 })
 
 server.start(() => console.log('Server is running on localhost:4000'))
