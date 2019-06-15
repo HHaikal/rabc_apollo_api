@@ -5,10 +5,10 @@ const resolvers = require('./graphql/resolver')
 const permission = require('./graphql/permission')
 require('dotenv').config()
 
-
+// set up server
 const server = new GraphQLServer({
-    typeDefs, 
-    resolvers, 
+    typeDefs,
+    resolvers,
     middlewares: [permission],
     context: req => {
         return {
@@ -17,5 +17,6 @@ const server = new GraphQLServer({
         }
     }
 })
+
 
 server.start(() => console.log('Server is running on localhost:4000'))

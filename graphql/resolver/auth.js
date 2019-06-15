@@ -12,14 +12,14 @@ module.exports = {
     Mutation: {
         /**
          * Register
-         * 
+         *
          * @return Object
          */
         signup: async (_, {name, email, password, role}, {models}) => {
 
             try {
-            
-                // check if email exist                
+
+                // check if email exist
                 await models.users.findOne({
                     where: { email: email }
                 }).then(user => {
@@ -44,11 +44,11 @@ module.exports = {
                         throw new AuthenticationError('One of role not found')
                     }
                 })
-                            
+
                 // set variable for jwt payload
                 let payload
 
-                // create new user            
+                // create new user
                 await models.users.create({
                     name, email, password
                 }).then(async user => {
@@ -89,7 +89,7 @@ module.exports = {
         },
         /**
          * Login
-         * 
+         *
          * @return Object
          */
         signin: async (_, {email, password}, {models}) => {
@@ -118,7 +118,10 @@ module.exports = {
                         id: user.id,
                         email: user.email
                     }
-                })                
+                }).catch(async err => {
+                    // throw error something not fine
+                    throw new AuthenticationError(err)
+                })
 
                 // generate token & return response
                 return {
